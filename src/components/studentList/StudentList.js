@@ -14,6 +14,7 @@ class StudentList extends Component {
     //When component mounts (displays on the screen) make a fetch request to an API
     componentDidMount() {
 
+        //get all the students when the component mounts on the screen
         this.getStudents()
         
     }
@@ -40,16 +41,22 @@ class StudentList extends Component {
     render() {
 
         //using map, loop through the students in state that came back from the API and build an array of <li> elements
-        //storing them in studentListItems 
-        const studentListItems = this.state.students.map((student, index) => {
+        //storing them in studentTableRows
+        const studentTableRows = this.state.students.map((student, index) => {
             return (
-                <li key={index}>
+                <tr key={index}>
                     {/* 
                         Link to the student component with the specifc student id so we can get that student from
                         the api and display their data 
                     */}
-                    <Link to={`/student/${student.id}`}>{student.last_name}, {student.first_name}</Link>
-                </li>
+                    <td>{student.id}</td>
+                    <td>{student.first_name}</td>
+                    <td>{student.last_name}</td>
+                    <td>{student.email}</td>
+                    <td>{student.major}</td>
+                    <td>{student.ip_address}</td>
+                    <td><Link to={`/student/${student.id}`}>View</Link></td>
+                </tr>
             );
         });
 
@@ -59,7 +66,19 @@ class StudentList extends Component {
         return (
             <section>
                 <h2>Welcome to the directory of students:</h2>
-                {this.state.loading ? <h2>Loading...</h2> : <ul>{studentListItems}</ul>}
+                <table>
+                    <thead>
+                        <th>Student ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>E-mail</th>
+                        <th>Major</th>
+                        <th>IP Address</th>
+                    </thead>
+                    <tbody>
+                        {this.state.loading ? <tr><td colspan="6">Loading....</td></tr> : studentTableRows}
+                    </tbody>
+                </table>
             </section>
         );
     }
