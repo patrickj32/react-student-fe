@@ -39,6 +39,7 @@ function App() {
           component={StudentList}
         />
         <Route
+          exact
           path="/student/:id"
           component={Student}
         />

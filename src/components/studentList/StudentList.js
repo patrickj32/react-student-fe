@@ -68,15 +68,17 @@ class StudentList extends Component {
                 <h2>Welcome to the directory of students:</h2>
                 <table>
                     <thead>
-                        <th>Student ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>E-mail</th>
-                        <th>Major</th>
-                        <th>IP Address</th>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>E-mail</th>
+                            <th>Major</th>
+                            <th>IP Address</th>
+                        </tr>
                     </thead>
                     <tbody>
-                        {this.state.loading ? <tr><td colspan="6">Loading....</td></tr> : studentTableRows}
+                        {this.state.loading ? <tr><td colSpan="6">Loading....</td></tr> : studentTableRows}
                     </tbody>
                 </table>
             </section>
