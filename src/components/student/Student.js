@@ -1,40 +1,39 @@
-import React, { Component } from "react";
+import { useEffect, useState } from "react";
 
-class Student extends Component {
+function Student(props) {
 
-    //setup initial state to hold the data we want to display for a student
-    state = {
+    const [student, setStudent] = useState({
         id: "",
         first_name: "",
         last_name: "",
         email: "",
         major: "",
         ip_address: ""
-    };
+    });
 
     //when the component mounts (displays on screen) get the student from the API
-    componentDidMount() {
+    useEffect(() => {
 
         //get the student's id from the URL to make the API call
-        const id = this.props.match.params.id;
+        const id = props.match.params.id;
 
-        this.getStudent(id)
+        getStudent(id)
 
-        
-    }
 
-    getStudent = (studentId) => {
+    }, [])
+
+    const getStudent = (studentId) => {
         //use fetch to make an API call and get a specific student (returns a promise)
         fetch(`http://localhost:5000/api/students/${studentId}`)
             //on success of the fetch request, turn the response that came back into JSON
             .then((response) => response.json())
             //on success of turnig the response into JSON (data we can work with), lets add that data to state
-            .then((data) => {
-            
+            .then((student) => {
+
 
                 //update state with the data from the API causing the page to re-render
-                this.setState({
-                    ...data
+                setStudent({
+                    ...student
                 });
             })
             //handle any errors/failures with getting data from the API
@@ -43,18 +42,17 @@ class Student extends Component {
             });
     }
 
-    render() {
-        //display the student data that is in state
-        return (
-            <section>
-                <h1>{this.state.first_name} {this.state.last_name}'s Details</h1>
-                <h2>This is student #{this.state.id}</h2>
-                <div>Email: {this.state.email}</div>
-                <div>Major: {this.state.major}</div>
-                <div>IP Address: {this.state.ip_address}</div>
-            </section>
-        );
-    }
+
+    //display the student data that is in state
+    return (
+        <section>
+            <h1>{student.first_name} {student.last_name}'s Details</h1>
+            <h2>This is student #{student.id}</h2>
+            <div>Email: {student.email}</div>
+            <div>Major: {student.major}</div>
+            <div>IP Address: {student.ip_address}</div>
+        </section>
+    );
 }
 
 export default Student;
