@@ -16,6 +16,8 @@ import Student from './components/student/Student';
 //Import NoMath (404) Component
 import NoMatch from "./components/noMatch/NoMatch";
 
+import AddStudent from "./components/addStudent/AddStudent";
+
 function App() {
   return (
     <div className="App">
@@ -37,6 +39,10 @@ function App() {
           exact
           path="/students"
           component={StudentList}
+        />
+        <Route
+          path="/student/create"
+          component={AddStudent}
         />
         <Route
           exact

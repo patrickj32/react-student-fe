@@ -61,6 +61,10 @@ function StudentList(props) {
     return (
         <section>
             <h2>Welcome to the directory of students:</h2>
+            <Link to={`/student/create`}>Add Student</Link>
+            <br></br>
+            <br></br>
+
             <table>
                 <thead>
                     <tr>
