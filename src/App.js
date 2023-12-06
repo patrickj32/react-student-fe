@@ -20,7 +20,7 @@ import AddStudent from "./components/addStudent/AddStudent";
 
 // Import guitar components
 import GuitarList from "./components/guitarList/GuitarList";
-import Guitar from "./components/guitar/Guitar"
+import Guitar from "./components/guitar/Guitar";
 import AddGuitar from "./components/addGuitar/AddGuitar";
 
 function App() {
@@ -39,12 +39,13 @@ function App() {
         <Route exact path="/students" component={StudentList} />
         <Route path="/student/create" component={AddStudent} />
         <Route exact path="/student/:id" component={Student} />
-        <Route path="*" component={NoMatch} />
 
+        
         {/* Add guitar routes */}
         <Route exact path="/guitars" component={GuitarList} />
         <Route path="/guitars/create" component={AddGuitar} />
-       <Route exact path="/guitars/:id" component={Guitar} />
+        <Route exact path="/guitars/:id" component={Guitar} />
+        <Route path="*" component={NoMatch} />
       </Switch>
     </div>
   );
