@@ -21,6 +21,24 @@ function GuitarList(props) {
       });
   };
 
+  const deleteGuitar = (event,guitarId) => {
+    event.preventDefault()
+    fetch(`http://localhost:5000/api/guitars/${guitarId}`,{
+      method: "DELETE",
+      // headers: {
+      //   'content-type': 'application/json'
+      // },
+    })
+      // .then((response) => response.json())
+      .then((guitars) => {
+      //  props.history.push("/guitars")
+        getGuitars();
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   const guitarTableRows = guitars.map((guitar, index) => (
     <tr key={index}>
       <td>{guitar.id}</td>
@@ -29,7 +47,16 @@ function GuitarList(props) {
       <td>{guitar.color}</td>
       <td>${guitar.price}</td>
       <td>{guitar.quantity}</td>
-      <td><Link to={`/guitars/${guitar.id}`}>View</Link></td>
+      <td>
+        <Link to={`/guitars/${guitar.id}`}>View</Link>
+
+         - 
+
+        <Link to={`/guitars/${guitar.id}/update`}> Edit Guitar</Link>
+
+        <a onClick={(event) => deleteGuitar(event,guitar.id)} href="#">Delete Guitar</a>
+      </td>
+
     </tr>
   ));
 
@@ -49,6 +76,7 @@ function GuitarList(props) {
             <th>Color</th>
             <th>Price</th>
             <th>Quantity</th>
+            <th>admin</th>
           </tr>
         </thead>
         <tbody>
