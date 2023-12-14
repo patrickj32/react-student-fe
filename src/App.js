@@ -23,6 +23,7 @@ import GuitarList from "./components/guitarList/GuitarList";
 import Guitar from "./components/guitar/Guitar";
 import AddGuitar from "./components/addGuitar/AddGuitar";
 import EditGuitar from "./components/editGuitar/EditGuitar";
+import EditStudent from "./components/editStudent/EditStudent"
 
 function App() {
   return (
@@ -40,6 +41,8 @@ function App() {
         <Route exact path="/students" component={StudentList} />
         <Route path="/student/create" component={AddStudent} />
         <Route exact path="/student/:id" component={Student} />
+        <Route exact path="/student/:id/update" component={EditStudent} />
+
 
         
         {/* Add guitar routes */}

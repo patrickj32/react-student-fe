@@ -33,6 +33,24 @@ function StudentList(props) {
             });
     }
 
+    const deleteStudent = (event, studentId) => {
+        event.preventDefault();
+        fetch(`http://localhost:5000/api/students/${studentId}`, {
+          method: "DELETE",
+          // headers: {
+          //   'content-type': 'application/json'
+          // },
+        })
+          // .then((response) => response.json())
+          .then(() => {
+            // props.history.push("/students");
+            getStudents();
+          })
+          .catch((error) => {
+            console.log(error.message);
+          });
+      };
+
 
 
     //using map, loop through the students in state that came back from the API and build an array of <li> elements
@@ -50,7 +68,11 @@ function StudentList(props) {
                 <td>{student.email}</td>
                 <td>{student.major}</td>
                 <td>{student.ip_address}</td>
-                <td><Link to={`/student/${student.id}`}>View</Link></td>
+                <td><Link to={`/student/${student.id}`}>View</Link>  </td>
+
+                
+                <Link to={`/student/${student.id}/update`}> Edit Student  </Link>
+                <a onClick={(event) => deleteStudent(event,student.id)} href="#">Delete Student</a>
             </tr>
         );
     });
