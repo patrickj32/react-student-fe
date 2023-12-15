@@ -60,7 +60,7 @@ function EditStudent(props) {
             onChange={handleChange}
             type="text"
             name="firstName"
-            value={student.firstName}
+            value={student.first_name}
           />
         </div>
         <div>
@@ -69,25 +69,25 @@ function EditStudent(props) {
             onChange={handleChange}
             type="text"
             name="lastName"
-            value={student.lastName}
+            value={student.last_name}
           />
         </div>
         <div>
-          <label>Age:</label>
-          <input
-            onChange={handleChange}
-            type="number"
-            name="age"
-            value={student.age}
-          />
-        </div>
-        <div>
-          <label>Grade:</label>
+          <label>E-mail</label>
           <input
             onChange={handleChange}
             type="text"
-            name="grade"
-            value={student.grade}
+            name="email"
+            value={student.email}
+          />
+        </div>
+        <div>
+          <label>Major:</label>
+          <input
+            onChange={handleChange}
+            type="text"
+            name="major"
+            value={student.major}
           />
         </div>
         {/* Add other input fields as needed */}
